@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_description.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: yochered <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/12/14 10:02:34 by yochered          #+#    #+#             */
+/*   Updated: 2018/12/14 10:02:35 by yochered         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/filler.h"
 
 void	get_player_info(int fd, t_desc *desc)
@@ -10,8 +22,9 @@ void	get_player_info(int fd, t_desc *desc)
 	{
 		get_next_line(fd, &line);
 		if (ft_strstr(line, MY_PLAYER))
-			desc->p = i;
+			desc->p = (char)(i == 1 ? 'O' : 'X');
 	}
+	desc->e = (char)(desc->p == 'X' ? 'O' : 'X');
 }
 
 void	get_size(int fd, t_desc *desc)
@@ -21,12 +34,12 @@ void	get_size(int fd, t_desc *desc)
 	if (ft_strstr(line, "Plateau"))
 	{
 		desc->b_height = ft_atoi(line + 8);
-		desc->b_width = ft_atoi(line + 8 + count_digits(desc->b_height));
+		desc->b_width = ft_atoi(line + 8 + ft_count_digits(desc->b_height, 10));
 	}
 	else if (ft_strstr(line, "Piece"))
 	{
 		desc->p_height = ft_atoi(line + 6);
-		desc->p_width = ft_atoi(line + 6 + count_digits(desc->p_height));
+		desc->p_width = ft_atoi(line + 6 + ft_count_digits(desc->p_height, 10));
 	}
 }
 
