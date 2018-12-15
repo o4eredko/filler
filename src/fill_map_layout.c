@@ -24,28 +24,7 @@ int		**create_layout(t_desc *desc)
 	return (layout);
 }
 
-int		*nearest_enemy_cell(t_enemy *e, int x, int y)
-{
-	int 	i;
-	int 	*cords;
-	int 	distance;
-
-	i = -1;
-	cords = (int*)ft_memalloc(sizeof(int) * 2);
-	distance = 0;
-	while (e->cords[++i])
-	{
-		if (MANHATTAN(e->cords[i][X], x, e->cords[i][Y], y) < distance || !distance)
-		{
-			distance = MANHATTAN(e->cords[i][X], x, e->cords[i][Y], y);
-			cords[X] = e->cords[i][X];
-			cords[Y] = e->cords[i][Y];
-		}
-	}
-	return (cords);
-}
-
-void	fill_digits(int **layout, t_desc *desc, t_enemy *e)
+void	fill_digits(int **layout, t_desc *desc)
 {
 	int y;
 	int x;
@@ -57,13 +36,13 @@ void	fill_digits(int **layout, t_desc *desc, t_enemy *e)
 		x = -1;
 		while (++x < desc->b_width)
 		{
-			if (desc->map[y][x] == desc->e)
+			if (desc->map[y][x] == desc->e_c)
 				layout[y][x] = 0;
-			else if (desc->map[y][x] == desc->p)
+			else if (desc->map[y][x] == desc->m_c)
 				layout[y][x] = -1;
 			else
 			{
-				cords = nearest_enemy_cell(e, x, y);
+				cords = nearest_enemy_cell(x, y, desc->e);
 				layout[y][x] = MAX(ABS(x - cords[X]), ABS(y - cords[Y]));
 				free(cords);
 			}
@@ -71,92 +50,73 @@ void	fill_digits(int **layout, t_desc *desc, t_enemy *e)
 	}
 }
 
-int 	central_cell(t_desc *desc, t_enemy *e, int i, int j)
+int		get_shape_size(char c, char **map, int *cords, t_shape *shape)
 {
-	if (i && ((j && desc->map[i - 1][j - 1] != desc->e) || desc->map[i - 1][j] != desc->e
-	|| (j != desc->b_width - 1 && desc->map[i - 1][j + 1] != desc->e)))
-		return (0);
-	if ((j && desc->map[i][j - 1] != desc->e) || (j != desc->b_width - 1 && desc->map[i][j + 1] != desc->e))
-		return (0);
-	if (i != desc->b_height && ((j && desc->map[i + 1][j - 1] != desc->e) || desc->map[i + 1][j] != desc->e
-	|| (j < desc->b_width - 1 && desc->map[i + 1][j + 1] != desc->e)))
-		return (0);
-	return (1);
-}
+	int		size;
+	int		y;
+	int		x;
 
-int		get_shape_size(t_desc *desc, t_enemy *e, int i, int j)
-{
-	int size;
-	int y;
-	int x;
-
-	y = i;
-	x = j;
-	e->height = 0;
-	e->width = 0;
+	y = cords[Y] - 1;
 	size = 0;
-	while (i < desc->b_height && strchr(desc->map[i], desc->e))
+	while (++y < shape->map_h && ft_strchr(map[y], c))
 	{
-		j = x - 1;
-		while (++j < desc->b_width)
-		{
-			if (desc->map[i][j] == desc->e && !central_cell(desc, e, i, j))
+		x = cords[X] - 1;
+		while (++x < shape->map_w)
+			if (map[cords[Y]][cords[X]] == c
+			&& (c != 'e' || !central_cell(map, cords, c, shape)))
 			{
-				if (j - x + 1 > e->width)
-					e->width = j - x + 1;
+				shape->width = (x - cords[X] + 1 > shape->width)
+						? x - cords[X] + 1 : shape->width;
 				size++;
 			}
-		}
-		if (i - y + 1 > e->height)
-			e->height = i - y + 1;
-		i++;
+		shape->height = (y - cords[Y] + 1 > shape->height)
+				? y - cords[Y] + 1 : shape->height;
 	}
 	return (size);
 }
 
-void	fill_cords(t_desc *desc, t_enemy *e, int i, int j)
+void	fill_shape_cords(char c, char **map, int cords[2], t_shape *shape)
 {
-	int i_tmp;
-	int j_tmp;
-	int k;
+	int		i_tmp;
+	int		j_tmp;
+	int		k;
 
-	i_tmp = i;
-	j_tmp = j;
+	i_tmp = cords[Y] - 1;
 	k = 0;
-	while (i < i_tmp + e->height)
+	while (++i_tmp < cords[Y] + shape->height)
 	{
-		j = j_tmp - 1;
-		while (++j < j_tmp + e->width)
+		j_tmp = -1;
+		while (++j_tmp < cords[X] + shape->map_w)
 		{
-			if (desc->map[i][j] == desc->e && !central_cell(desc, e, i, j))
+			if (map[i_tmp][j_tmp] == c
+			&& (c != 'e' || !central_cell(map, cords, c, shape)))
 			{
-				e->cords[k] = (int*)ft_memalloc(2);
-				e->cords[k][X] = j;
-				e->cords[k++][Y] = i;
+				shape->cords[k] = (int*)ft_memalloc(2);
+				shape->cords[k][X] = j_tmp;
+				shape->cords[k++][Y] = i_tmp;
 			}
 		}
-		i++;
 	}
 }
 
-int 	**fill_map_layout(t_desc *desc)
+int		**fill_map_layout(t_desc *desc)
 {
-	t_enemy	e;
 	int		**layout;
-	int		i;
-	int		j;
+	int		*cords;
 
-	i = 0;
-	j = 0;
-	while (i < desc->b_height && !ft_strchr(desc->map[i], desc->e))
-		i++;
-	while (desc->map[i][j] && desc->map[i][j] != desc->e)
-		j++;
-	e.cords = (int**)ft_memalloc(sizeof(int*) * (get_shape_size(desc, &e, i, j) + 1));
-	fill_cords(desc, &e, i, j);
-	for (int k = 0; e.cords[k]; k++)
-		printf("(%d, %d)\n", e.cords[k][X], e.cords[k][Y]);
+	desc->e->height = 0;
+	desc->e->width = 0;
+	cords = find_tl_corner(desc->map, desc->e_c, desc->b_height);
+	desc->e->cords = (int**)ft_memalloc(sizeof(int*) *
+			(get_shape_size(desc->e_c, desc->map, cords, desc->e) + 1));
+	fill_shape_cords(desc->e_c, desc->map, cords, desc->e);
 	layout = create_layout(desc);
-	fill_digits(layout, desc, &e);
+	fill_digits(layout, desc);
+	desc->p->height = 0;
+	desc->p->width = 0;
+	cords = find_tl_corner(desc->piece, '*', desc->p->map_h);
+	desc->p->cords = (int**)ft_memalloc(sizeof(int*) *
+			(get_shape_size('*', desc->piece, cords, desc->p) + 1));
+	fill_shape_cords('*', desc->piece, cords, desc->p);
 	return (layout);
 }
