@@ -20,7 +20,7 @@ static char		*get_line(char *src, t_gnl *gnl, int size)
 	char	*res;
 	char	*res_tmp;
 
-	CHECK((res = ft_strnew(size + gnl->r_size)));
+	CHECK((res = ft_strnew((size_t)(size + gnl->r_size))));
 	res_tmp = res;
 	src_tmp = src;
 	while (size--)
@@ -33,10 +33,10 @@ static char		*get_line(char *src, t_gnl *gnl, int size)
 
 static char		*read_file(char *res, t_gnl *gnl)
 {
-	while ((gnl->r_size = read(gnl->fd, gnl->buf, BUFF_SIZE)))
+	while ((gnl->r_size = (int)read(gnl->fd, gnl->buf, BUFF_SIZE)))
 	{
 		gnl->i = 0;
-		CHECK((res = get_line(res, gnl, ft_strlen(res))));
+		CHECK((res = get_line(res, gnl, (int)ft_strlen(res))));
 		if (gnl->i < gnl->r_size)
 			break ;
 	}
@@ -82,7 +82,6 @@ static t_gnl	*find_fd(t_gnl *search_fd, int fd)
 		search_fd = search_fd->next;
 	}
 	search_fd = cur ? cur : search_fd;
-	cur = search_fd ? search_fd : cur;
 	if (!search_fd)
 	{
 		CHECK((tmp->next = del_create_node(tmp, fd)));

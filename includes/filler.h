@@ -16,7 +16,7 @@
 # include "../libft/includes/libft.h"
 # include <unistd.h>
 # include <stdio.h>
-# define MY_PLAYER "yochered.filler"
+# define CHAR(x, c) ((x) == (c) || (x) == (c + 32) ? 1 : 0)
 # define MAX(x, y) ((x > y) ? x : y)
 # define MANHATTAN(x1, x2, y1, y2) ((ABS(x2 - x1)) + ABS((y2 - y1)))
 # define X 0
@@ -30,6 +30,7 @@ typedef struct		s_shape
 	int				width;
 	int				map_w;
 	int				map_h;
+	int 			*shift;
 	int 			**cords;
 }					t_shape;
 
@@ -41,25 +42,24 @@ typedef struct		s_desc
 	int 			b_width;
 	char 			**map;
 	char 			**piece;
+	int				min_x;
+	int 			min_y;
+	int 			max_x;
+	int 			max_y;
 	t_shape			*e;
 	t_shape			*p;
 }					t_desc;
 
-typedef struct		s_area
-{
-	int				min_y;
-	int 			min_x;
-	int 			max_y;
-	int 			max_x;
-}					t_area;
-
-void				get_description(t_desc *desc);
+void				get_player_info(t_desc *desc);
+int					get_shape(t_desc *desc);
+int					get_map(t_desc *desc);
+int					get_size(t_desc *desc);
 int 				**fill_map_layout(t_desc *desc);
 int					*find_tl_corner(char **map, char c, int height);
 int					*nearest_enemy_cell(int x, int y, t_shape *shape);
-int					central_cell(char **map, int *cords, char c, t_shape *shape);
+int					central_cell(char **map, t_shape *shape, char c, int *cords);
+void				check_range(t_desc *desc, int x, int y);
 void				algorithm(t_desc *desc, int **layout);
-int					find_min_x(char **map, char c, int height, int width);
-int					find_max_x(char **map, char c, int height, int width);
-int					find_max_y(char **map, char c, int height, int width);
+
+void	print_cords(int **cords);
 #endif

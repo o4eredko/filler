@@ -10,76 +10,73 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/filler.h"
+#include <filler.h>
 
 void	get_player_info(t_desc *desc)
 {
-	int 	i;
 	char	*line;
 
-	i = 0;
-	while (++i <= 2)
+	if (get_next_line(0, &line) == 1)
 	{
-		get_next_line(1, &line);
-		if (ft_strstr(line, MY_PLAYER))
-			desc->m_c = (char)(i == 1 ? 'O' : 'X');
+		desc->m_c = (char)(line[10] == '1' ? 'O' : 'X');
+		desc->e_c = (char)(desc->m_c == 'O' ? 'X' : 'O');
+		free(line);
 	}
-	desc->e_c = (char)(desc->m_c == 'X' ? 'O' : 'X');
 }
 
-void	get_size(t_desc *desc)
+int		get_size(t_desc *desc)
 {
 	char	*line;
-	get_next_line(1, &line);
-	if (ft_strstr(line, "Plateau"))
+
+	if (get_next_line(0, &line) != 1)
+		return (0);
+	if (!desc->b_height && !desc->b_width && ft_strnequ(line, "Plateau", 7))
 	{
 		desc->b_height = ft_atoi(line + 8);
 		desc->b_width = ft_atoi(line + 8 + ft_count_digits(desc->b_height, 10));
 	}
-	else if (ft_strstr(line, "Piece"))
+	else if (!desc->p->map_h && !desc->p->map_w && ft_strnequ(line, "Piece", 5))
 	{
 		desc->p->map_h = ft_atoi(line + 6);
-		desc->p->map_w = ft_atoi(line + 6 + ft_count_digits(desc->p->map_h, 10));
+		desc->p->map_w = ft_atoi(line + 6 +
+			ft_count_digits(desc->p->map_h, 10));
 	}
+	free(line);
+	return (1);
 }
 
-void	get_map(t_desc *desc)
+int		get_map(t_desc *desc)
 {
-	char	*tmp;
 	int		i;
 
 	i = -1;
+	if (!(get_size(desc)))
+		return (0);
 	desc->map = (char**)(malloc(sizeof(char*) * desc->b_height));
-	get_next_line(1, &tmp);
+	get_next_line(0, &(desc->map[0]));
+	free(desc->map[0]);
 	while (++i < desc->b_height)
-		get_next_line(1, &(desc->map[i]));
-	while (i--)
 	{
-		tmp = ft_strsub(desc->map[i], 4, ft_strlen(desc->map[i]));
-		free(desc->map[i]);
-		desc->map[i] = tmp;
+		get_next_line(0, &(desc->map[i]));
+		desc->map[i] += 4;
 	}
 	desc->e->map_h = desc->b_height;
 	desc->e->map_w = desc->b_width;
+	return (1);
 }
 
-void	get_piece(t_desc *desc)
+int		get_shape(t_desc *desc)
 {
 	int		i;
+	int		*tl;
 
 	i = -1;
+	if (!(get_size(desc)))
+		return (0);
 	desc->piece = (char**)(malloc(sizeof(char*) * desc->p->map_h));
 	while (++i < desc->p->map_h)
-		get_next_line(1, &(desc->piece[i]));
-	desc->p->map_h = desc->p->map_h;
-	desc->p->map_w = desc->p->map_w;
-}
-
-void	get_description(t_desc *desc)
-{
-	get_player_info(desc);
-	get_size(desc);
-	get_map(desc);
-	get_size(desc);
-	get_piece(desc);
+		get_next_line(0, &(desc->piece[i]));
+	tl = find_tl_corner(desc->piece, '*', desc->p->map_h);
+	desc->p->shift = tl;
+	return (1);
 }

@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/filler.h"
+#include <filler.h>
 
 int		**create_layout(t_desc *desc)
 {
@@ -36,10 +36,13 @@ void	fill_digits(int **layout, t_desc *desc)
 		x = -1;
 		while (++x < desc->b_width)
 		{
-			if (desc->map[y][x] == desc->e_c)
+			if (CHAR(desc->map[y][x], desc->e_c))
 				layout[y][x] = 0;
-			else if (desc->map[y][x] == desc->m_c)
+			else if (CHAR(desc->map[y][x], desc->m_c))
+			{
+				check_range(desc, x, y);
 				layout[y][x] = -1;
+			}
 			else
 			{
 				cords = nearest_enemy_cell(x, y, desc->e);
@@ -52,50 +55,51 @@ void	fill_digits(int **layout, t_desc *desc)
 
 int		get_shape_size(char c, char **map, int *cords, t_shape *shape)
 {
+	int		cords_tmp[2];
 	int		size;
-	int		y;
-	int		x;
 
-	y = cords[Y] - 1;
+	cords_tmp[Y] = cords[Y] - 1;
 	size = 0;
-	while (++y < shape->map_h && ft_strchr(map[y], c))
+	while (++cords_tmp[Y] < shape->map_h)
 	{
-		x = cords[X] - 1;
-		while (++x < shape->map_w)
-			if (map[cords[Y]][cords[X]] == c
-			&& (c != 'e' || !central_cell(map, cords, c, shape)))
+		cords_tmp[X] = -1;
+		while (++cords_tmp[X] < shape->map_w)
+			if (CHAR(map[cords_tmp[Y]][cords_tmp[X]], c) &&
+			(c == '*' || !central_cell(map, shape, c, cords_tmp)))
 			{
-				shape->width = (x - cords[X] + 1 > shape->width)
-						? x - cords[X] + 1 : shape->width;
+				shape->width = (cords_tmp[X] - cords[X] + 1 > shape->width)
+						? cords_tmp[X] - cords[X] + 1 : shape->width;
 				size++;
 			}
-		shape->height = (y - cords[Y] + 1 > shape->height)
-				? y - cords[Y] + 1 : shape->height;
+		shape->height = (cords_tmp[Y] - cords[Y] + 1 > shape->height)
+				? cords_tmp[Y] - cords[Y] + 1 : shape->height;
 	}
 	return (size);
 }
 
-void	fill_shape_cords(char c, char **map, int cords[2], t_shape *shape)
+void	fill_shape_cords(char c, char **map, int *cords, t_shape *shape)
 {
-	int		i_tmp;
-	int		j_tmp;
+	int		cords_tmp[2];
 	int		k;
 
-	i_tmp = cords[Y] - 1;
+	cords_tmp[Y] = cords[Y] - 1;
 	k = 0;
-	while (++i_tmp < cords[Y] + shape->height)
+	while (++cords_tmp[Y] < cords[Y] + shape->height
+		&& cords_tmp[Y] < shape->map_h)
 	{
-		j_tmp = -1;
-		while (++j_tmp < cords[X] + shape->map_w)
+		cords_tmp[X] = -1;
+		while (++cords_tmp[X] < cords[X] + shape->width
+			&& cords_tmp[X] < shape->map_w)
 		{
-			if (map[i_tmp][j_tmp] == c
-			&& (c != 'e' || !central_cell(map, cords, c, shape)))
+			if (CHAR(map[cords_tmp[Y]][cords_tmp[X]], c) &&
+				(c == '*' || !central_cell(map, shape, c, cords_tmp)))
 			{
 				shape->cords[k] = (int*)ft_memalloc(2);
-				shape->cords[k][X] = j_tmp;
-				shape->cords[k++][Y] = i_tmp;
+				shape->cords[k][X] = cords_tmp[X];
+				shape->cords[k++][Y] = cords_tmp[Y];
 			}
 		}
+		shape->cords[k] = NULL;
 	}
 }
 
@@ -104,19 +108,17 @@ int		**fill_map_layout(t_desc *desc)
 	int		**layout;
 	int		*cords;
 
-	desc->e->height = 0;
-	desc->e->width = 0;
 	cords = find_tl_corner(desc->map, desc->e_c, desc->b_height);
 	desc->e->cords = (int**)ft_memalloc(sizeof(int*) *
 			(get_shape_size(desc->e_c, desc->map, cords, desc->e) + 1));
 	fill_shape_cords(desc->e_c, desc->map, cords, desc->e);
 	layout = create_layout(desc);
 	fill_digits(layout, desc);
-	desc->p->height = 0;
-	desc->p->width = 0;
+	free(cords);
 	cords = find_tl_corner(desc->piece, '*', desc->p->map_h);
 	desc->p->cords = (int**)ft_memalloc(sizeof(int*) *
 			(get_shape_size('*', desc->piece, cords, desc->p) + 1));
 	fill_shape_cords('*', desc->piece, cords, desc->p);
+	free(cords);
 	return (layout);
 }
