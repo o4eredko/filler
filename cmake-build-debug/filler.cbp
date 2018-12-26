@@ -1,0 +1,347 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="filler"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="/Users/yochered/Desktop/c_lion/filler/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/yochered/Desktop/c_lion/filler/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/yochered/Desktop/c_lion/filler/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/yochered/Desktop/c_lion/filler/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/yochered/Desktop/c_lion/filler/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="/Users/yochered/Desktop/c_lion/filler/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/yochered/Desktop/c_lion/filler/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/yochered/Desktop/c_lion/filler/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/yochered/Desktop/c_lion/filler/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/yochered/Desktop/c_lion/filler/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="/Users/yochered/Desktop/c_lion/filler/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/yochered/Desktop/c_lion/filler/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/yochered/Desktop/c_lion/filler/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/yochered/Desktop/c_lion/filler/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/yochered/Desktop/c_lion/filler/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="filler">
+				<Option output="/Users/yochered/Desktop/c_lion/filler/cmake-build-debug/filler" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/yochered/Desktop/c_lion/filler/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/Users/yochered/Desktop/c_lion/filler/./libft/includes"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/9.0.0/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
+					<Add directory="/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/yochered/Desktop/c_lion/filler/cmake-build-debug/Makefile&quot;  VERBOSE=1 filler"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/yochered/Desktop/c_lion/filler/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/yochered/Desktop/c_lion/filler/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/yochered/Desktop/c_lion/filler/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="filler/fast">
+				<Option output="/Users/yochered/Desktop/c_lion/filler/cmake-build-debug/filler" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/yochered/Desktop/c_lion/filler/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/Users/yochered/Desktop/c_lion/filler/./libft/includes"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/9.0.0/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
+					<Add directory="/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/yochered/Desktop/c_lion/filler/cmake-build-debug/Makefile&quot;  VERBOSE=1 filler/fast"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/yochered/Desktop/c_lion/filler/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/yochered/Desktop/c_lion/filler/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/yochered/Desktop/c_lion/filler/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="/Users/yochered/Desktop/c_lion/filler/libft/ft_atoi.c">
+			<Option target="filler"/>
+		</Unit>
+		<Unit filename="/Users/yochered/Desktop/c_lion/filler/libft/ft_bzero.c">
+			<Option target="filler"/>
+		</Unit>
+		<Unit filename="/Users/yochered/Desktop/c_lion/filler/libft/ft_count_digits.c">
+			<Option target="filler"/>
+		</Unit>
+		<Unit filename="/Users/yochered/Desktop/c_lion/filler/libft/ft_cycle_detector.c">
+			<Option target="filler"/>
+		</Unit>
+		<Unit filename="/Users/yochered/Desktop/c_lion/filler/libft/ft_isalnum.c">
+			<Option target="filler"/>
+		</Unit>
+		<Unit filename="/Users/yochered/Desktop/c_lion/filler/libft/ft_isalpha.c">
+			<Option target="filler"/>
+		</Unit>
+		<Unit filename="/Users/yochered/Desktop/c_lion/filler/libft/ft_isascii.c">
+			<Option target="filler"/>
+		</Unit>
+		<Unit filename="/Users/yochered/Desktop/c_lion/filler/libft/ft_isdigit.c">
+			<Option target="filler"/>
+		</Unit>
+		<Unit filename="/Users/yochered/Desktop/c_lion/filler/libft/ft_isprint.c">
+			<Option target="filler"/>
+		</Unit>
+		<Unit filename="/Users/yochered/Desktop/c_lion/filler/libft/ft_itoa.c">
+			<Option target="filler"/>
+		</Unit>
+		<Unit filename="/Users/yochered/Desktop/c_lion/filler/libft/ft_itoa_base.c">
+			<Option target="filler"/>
+		</Unit>
+		<Unit filename="/Users/yochered/Desktop/c_lion/filler/libft/ft_lstadd.c">
+			<Option target="filler"/>
+		</Unit>
+		<Unit filename="/Users/yochered/Desktop/c_lion/filler/libft/ft_lstdel.c">
+			<Option target="filler"/>
+		</Unit>
+		<Unit filename="/Users/yochered/Desktop/c_lion/filler/libft/ft_lstdelone.c">
+			<Option target="filler"/>
+		</Unit>
+		<Unit filename="/Users/yochered/Desktop/c_lion/filler/libft/ft_lstiter.c">
+			<Option target="filler"/>
+		</Unit>
+		<Unit filename="/Users/yochered/Desktop/c_lion/filler/libft/ft_lstmap.c">
+			<Option target="filler"/>
+		</Unit>
+		<Unit filename="/Users/yochered/Desktop/c_lion/filler/libft/ft_lstnew.c">
+			<Option target="filler"/>
+		</Unit>
+		<Unit filename="/Users/yochered/Desktop/c_lion/filler/libft/ft_lstrev.c">
+			<Option target="filler"/>
+		</Unit>
+		<Unit filename="/Users/yochered/Desktop/c_lion/filler/libft/ft_memalloc.c">
+			<Option target="filler"/>
+		</Unit>
+		<Unit filename="/Users/yochered/Desktop/c_lion/filler/libft/ft_memccpy.c">
+			<Option target="filler"/>
+		</Unit>
+		<Unit filename="/Users/yochered/Desktop/c_lion/filler/libft/ft_memchr.c">
+			<Option target="filler"/>
+		</Unit>
+		<Unit filename="/Users/yochered/Desktop/c_lion/filler/libft/ft_memcmp.c">
+			<Option target="filler"/>
+		</Unit>
+		<Unit filename="/Users/yochered/Desktop/c_lion/filler/libft/ft_memcpy.c">
+			<Option target="filler"/>
+		</Unit>
+		<Unit filename="/Users/yochered/Desktop/c_lion/filler/libft/ft_memdel.c">
+			<Option target="filler"/>
+		</Unit>
+		<Unit filename="/Users/yochered/Desktop/c_lion/filler/libft/ft_memmove.c">
+			<Option target="filler"/>
+		</Unit>
+		<Unit filename="/Users/yochered/Desktop/c_lion/filler/libft/ft_memset.c">
+			<Option target="filler"/>
+		</Unit>
+		<Unit filename="/Users/yochered/Desktop/c_lion/filler/libft/ft_print_memory.c">
+			<Option target="filler"/>
+		</Unit>
+		<Unit filename="/Users/yochered/Desktop/c_lion/filler/libft/ft_printf.c">
+			<Option target="filler"/>
+		</Unit>
+		<Unit filename="/Users/yochered/Desktop/c_lion/filler/libft/ft_putchar.c">
+			<Option target="filler"/>
+		</Unit>
+		<Unit filename="/Users/yochered/Desktop/c_lion/filler/libft/ft_putchar_fd.c">
+			<Option target="filler"/>
+		</Unit>
+		<Unit filename="/Users/yochered/Desktop/c_lion/filler/libft/ft_putendl.c">
+			<Option target="filler"/>
+		</Unit>
+		<Unit filename="/Users/yochered/Desktop/c_lion/filler/libft/ft_putendl_fd.c">
+			<Option target="filler"/>
+		</Unit>
+		<Unit filename="/Users/yochered/Desktop/c_lion/filler/libft/ft_putnbr.c">
+			<Option target="filler"/>
+		</Unit>
+		<Unit filename="/Users/yochered/Desktop/c_lion/filler/libft/ft_putnbr_fd.c">
+			<Option target="filler"/>
+		</Unit>
+		<Unit filename="/Users/yochered/Desktop/c_lion/filler/libft/ft_putstr.c">
+			<Option target="filler"/>
+		</Unit>
+		<Unit filename="/Users/yochered/Desktop/c_lion/filler/libft/ft_putstr_fd.c">
+			<Option target="filler"/>
+		</Unit>
+		<Unit filename="/Users/yochered/Desktop/c_lion/filler/libft/ft_quick_sort.c">
+			<Option target="filler"/>
+		</Unit>
+		<Unit filename="/Users/yochered/Desktop/c_lion/filler/libft/ft_strcat.c">
+			<Option target="filler"/>
+		</Unit>
+		<Unit filename="/Users/yochered/Desktop/c_lion/filler/libft/ft_strchr.c">
+			<Option target="filler"/>
+		</Unit>
+		<Unit filename="/Users/yochered/Desktop/c_lion/filler/libft/ft_strclr.c">
+			<Option target="filler"/>
+		</Unit>
+		<Unit filename="/Users/yochered/Desktop/c_lion/filler/libft/ft_strcmp.c">
+			<Option target="filler"/>
+		</Unit>
+		<Unit filename="/Users/yochered/Desktop/c_lion/filler/libft/ft_strcpy.c">
+			<Option target="filler"/>
+		</Unit>
+		<Unit filename="/Users/yochered/Desktop/c_lion/filler/libft/ft_strdel.c">
+			<Option target="filler"/>
+		</Unit>
+		<Unit filename="/Users/yochered/Desktop/c_lion/filler/libft/ft_strdup.c">
+			<Option target="filler"/>
+		</Unit>
+		<Unit filename="/Users/yochered/Desktop/c_lion/filler/libft/ft_strequ.c">
+			<Option target="filler"/>
+		</Unit>
+		<Unit filename="/Users/yochered/Desktop/c_lion/filler/libft/ft_striter.c">
+			<Option target="filler"/>
+		</Unit>
+		<Unit filename="/Users/yochered/Desktop/c_lion/filler/libft/ft_striteri.c">
+			<Option target="filler"/>
+		</Unit>
+		<Unit filename="/Users/yochered/Desktop/c_lion/filler/libft/ft_strjoin.c">
+			<Option target="filler"/>
+		</Unit>
+		<Unit filename="/Users/yochered/Desktop/c_lion/filler/libft/ft_strlcat.c">
+			<Option target="filler"/>
+		</Unit>
+		<Unit filename="/Users/yochered/Desktop/c_lion/filler/libft/ft_strlen.c">
+			<Option target="filler"/>
+		</Unit>
+		<Unit filename="/Users/yochered/Desktop/c_lion/filler/libft/ft_strmap.c">
+			<Option target="filler"/>
+		</Unit>
+		<Unit filename="/Users/yochered/Desktop/c_lion/filler/libft/ft_strmapi.c">
+			<Option target="filler"/>
+		</Unit>
+		<Unit filename="/Users/yochered/Desktop/c_lion/filler/libft/ft_strncat.c">
+			<Option target="filler"/>
+		</Unit>
+		<Unit filename="/Users/yochered/Desktop/c_lion/filler/libft/ft_strncmp.c">
+			<Option target="filler"/>
+		</Unit>
+		<Unit filename="/Users/yochered/Desktop/c_lion/filler/libft/ft_strncpy.c">
+			<Option target="filler"/>
+		</Unit>
+		<Unit filename="/Users/yochered/Desktop/c_lion/filler/libft/ft_strnequ.c">
+			<Option target="filler"/>
+		</Unit>
+		<Unit filename="/Users/yochered/Desktop/c_lion/filler/libft/ft_strnew.c">
+			<Option target="filler"/>
+		</Unit>
+		<Unit filename="/Users/yochered/Desktop/c_lion/filler/libft/ft_strnstr.c">
+			<Option target="filler"/>
+		</Unit>
+		<Unit filename="/Users/yochered/Desktop/c_lion/filler/libft/ft_strrchr.c">
+			<Option target="filler"/>
+		</Unit>
+		<Unit filename="/Users/yochered/Desktop/c_lion/filler/libft/ft_strsplit.c">
+			<Option target="filler"/>
+		</Unit>
+		<Unit filename="/Users/yochered/Desktop/c_lion/filler/libft/ft_strstr.c">
+			<Option target="filler"/>
+		</Unit>
+		<Unit filename="/Users/yochered/Desktop/c_lion/filler/libft/ft_strsub.c">
+			<Option target="filler"/>
+		</Unit>
+		<Unit filename="/Users/yochered/Desktop/c_lion/filler/libft/ft_strtrim.c">
+			<Option target="filler"/>
+		</Unit>
+		<Unit filename="/Users/yochered/Desktop/c_lion/filler/libft/ft_tolower.c">
+			<Option target="filler"/>
+		</Unit>
+		<Unit filename="/Users/yochered/Desktop/c_lion/filler/libft/ft_toupper.c">
+			<Option target="filler"/>
+		</Unit>
+		<Unit filename="/Users/yochered/Desktop/c_lion/filler/libft/get_next_line.c">
+			<Option target="filler"/>
+		</Unit>
+		<Unit filename="/Users/yochered/Desktop/c_lion/filler/libft/printf_src/allowed_symbols.c">
+			<Option target="filler"/>
+		</Unit>
+		<Unit filename="/Users/yochered/Desktop/c_lion/filler/libft/printf_src/bonus_types.c">
+			<Option target="filler"/>
+		</Unit>
+		<Unit filename="/Users/yochered/Desktop/c_lion/filler/libft/printf_src/convert_to_str.c">
+			<Option target="filler"/>
+		</Unit>
+		<Unit filename="/Users/yochered/Desktop/c_lion/filler/libft/printf_src/function_array.c">
+			<Option target="filler"/>
+		</Unit>
+		<Unit filename="/Users/yochered/Desktop/c_lion/filler/libft/printf_src/handlers.c">
+			<Option target="filler"/>
+		</Unit>
+		<Unit filename="/Users/yochered/Desktop/c_lion/filler/libft/printf_src/mem_funcs.c">
+			<Option target="filler"/>
+		</Unit>
+		<Unit filename="/Users/yochered/Desktop/c_lion/filler/libft/printf_src/print_float.c">
+			<Option target="filler"/>
+		</Unit>
+		<Unit filename="/Users/yochered/Desktop/c_lion/filler/libft/printf_src/print_funcs.c">
+			<Option target="filler"/>
+		</Unit>
+		<Unit filename="/Users/yochered/Desktop/c_lion/filler/libft/printf_src/print_int.c">
+			<Option target="filler"/>
+		</Unit>
+		<Unit filename="/Users/yochered/Desktop/c_lion/filler/libft/printf_src/print_pointer.c">
+			<Option target="filler"/>
+		</Unit>
+		<Unit filename="/Users/yochered/Desktop/c_lion/filler/libft/printf_src/print_str.c">
+			<Option target="filler"/>
+		</Unit>
+		<Unit filename="/Users/yochered/Desktop/c_lion/filler/libft/printf_src/print_uint.c">
+			<Option target="filler"/>
+		</Unit>
+		<Unit filename="/Users/yochered/Desktop/c_lion/filler/libft/printf_src/str_functions.c">
+			<Option target="filler"/>
+		</Unit>
+		<Unit filename="/Users/yochered/Desktop/c_lion/filler/src/additional_funcs.c">
+			<Option target="filler"/>
+		</Unit>
+		<Unit filename="/Users/yochered/Desktop/c_lion/filler/src/algorithm.c">
+			<Option target="filler"/>
+		</Unit>
+		<Unit filename="/Users/yochered/Desktop/c_lion/filler/src/fill_map_layout.c">
+			<Option target="filler"/>
+		</Unit>
+		<Unit filename="/Users/yochered/Desktop/c_lion/filler/src/get_description.c">
+			<Option target="filler"/>
+		</Unit>
+		<Unit filename="/Users/yochered/Desktop/c_lion/filler/src/main.c">
+			<Option target="filler"/>
+		</Unit>
+		<Unit filename="/Users/yochered/Desktop/c_lion/filler/visualizer/stdfuncs.c">
+			<Option target="filler"/>
+		</Unit>
+		<Unit filename="/Users/yochered/Desktop/c_lion/filler/visualizer/visualize.c">
+			<Option target="filler"/>
+		</Unit>
+		<Unit filename="/Users/yochered/Desktop/c_lion/filler/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>

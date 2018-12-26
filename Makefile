@@ -14,9 +14,9 @@ NAME = yochered.filler
 
 SRC = $(addprefix $(SRCDIR), main.c additional_funcs.c algorithm.c fill_map_layout.c get_description.c)
 
-VISUAL_SRC = $(addprefix $(VISUAL_DIR), visualize.c stdfuncs.c)
+VISUAL_SRC = $(addprefix $(VISUAL_DIR), visu.c windows_funcs.c parse.c print.c)
 
-VISUAL_DIR = ./visualizer/
+VISUAL_DIR = ./visu/
 
 VISUAL_OBJ = $(VISUAL_SRC:.c =.o)
 
@@ -31,24 +31,24 @@ VISUAL = show_filler
 all: $(NAME)
 
 $(NAME): $(OBJ) $(LIBFT)
-	@gcc -o $(NAME) $(SRC) -L ./libft/ -lft -I ./includes/
+	gcc -o $(NAME) $(SRC) -L ./libft/ -lft -I ./includes/
 
 filler: $(VISUAL_OBJ) $(LIBFT)
-	@gcc -o show_filler $(VISUAL_OBJ) -L ./libft/ -lft -lncurses -I ./includes/
+	gcc -o visu_filler $(VISUAL_OBJ) -L ./libft/ -lft -I /usr/local/include -lmlx -framework OpenGL -framework AppKit
 
 $(addprefix $(SRCDIR), %.o): $(addprefix $(SRCDIR), %.c)
-	@gcc -Wall -W -Werror -c -o $@ $< -I ./includes/
+	gcc -Wall -W -Werror -c -o $@ $< -I ./includes/
 
 $(addprefix $(VISUAL_DIR), %.o): $(addprefix $(VISUAL_DIR), %.c)
-	@gcc -Wall -W -Werror -c -o $@ $< -I -I ./includes/
+	gcc -Wall -W -Werror -c -o $@ $<
 
 $(LIBFT):
 	@make -C ./libft/ --silent
 
 clean:
-	@/bin/rm -f $(OBJ)
-	@/bin/rm -f $(VISUAL_OBJ)
-	@make -C ./libft/ clean --silent
+	/bin/rm -f $(OBJ)
+	/bin/rm -f visu/*.o
+	make -C ./libft/ clean --silent
 
 fclean: clean
 	@/bin/rm -f $(NAME)
