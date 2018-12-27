@@ -21,8 +21,6 @@
 # define MANHATTAN(x1, x2, y1, y2) ((ABS(x2 - x1)) + ABS((y2 - y1)))
 # define X 0
 # define Y 1
-//Delete
-# include <fcntl.h>
 
 typedef struct		s_shape
 {

@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "visu.h"
+#include <pthread.h>
 
 void	put_error(char *str)
 {
@@ -25,6 +26,10 @@ void	init_description(t_desc *d)
 {
 	d->map_h = 0;
 	d->map_w = 0;
+	d->my_col = 0x0ad7e7;
+	d->enem_col = 0xea0f0f;
+	g_my_score = 1;
+	g_e_score = 1;
 }
 
 int		main(int ac, char **av)
@@ -40,17 +45,10 @@ int		main(int ac, char **av)
 	{
 		if ((fd = open(av[1], 0)) == -1)
 			put_error(NULL);
-		create_window(&d);
 		head = parse_file(&d, fd);
-		fill_window(&d, head);
-		// while (head)
-		// {
-		// 	for(int i = 0; i < d.map_h; i++)
-		// 		ft_printf(CYAN("%s\n"), head->map[i]);
-		// 	ft_printf("\n\n");
-		// 	head = head->next;
-		// }
-		mlx_hook(d.win, 2, 5, key_hook, &d);
+		create_window(&d);
+		d.head = head;
+		mlx_hook(d.win, 2, 3, key_hook, &d);
 		mlx_loop(d.mlx);
 		if ((close(fd) == -1))
 			put_error(NULL);

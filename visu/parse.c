@@ -62,13 +62,21 @@ t_frames	*parse_file(t_desc *d, int fd)
 	head = NULL;
 	while (get_next_line(fd, &line) > 0)
 	{
-		if (ft_strstr(line, "yochered.filler"))
+		if (ft_strstr(line, "[./yochered.filler]"))
 		{
 			d->m_c = *(line + 10) == 1 ? 'O' : 'X';
-			d->e_c = d->m_c = 'O' ? 'X' : 'O';
+			d->e_c = (d->m_c == 'O') ? 'X' : 'O';
 		}
 		if (ft_strnequ(line, "Plateau", 7))
 			insert_to_list(&head, fd, line, d);
+		if (ft_strnequ(line, "launched", 8) && !ft_strstr(line, "yochered.filler"))
+			d->enemy = ft_strdup(line + 17);
+		if (CHAR(*(line + 3), d->e_c) && ft_strstr(line, "fin:"))
+			d->e_score = ft_atoi(line + 10);
+		else if (CHAR(*(line + 3), d->m_c) && ft_strstr(line, "fin:"))
+			d->my_score = ft_atoi(line + 10);
 	}
+	if (d->m_c == 'O')
+		d->i = 0;
 	return (head);
 }

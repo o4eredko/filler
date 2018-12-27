@@ -11,43 +11,38 @@
 # **************************************************************************** #
 
 NAME = yochered.filler
+LIBFT = libft.a
+VISUAL = visu_filler
 
-SRC = $(addprefix $(SRCDIR), main.c additional_funcs.c algorithm.c fill_map_layout.c get_description.c)
+SRC = main.c additional_funcs.c algorithm.c fill_map_layout.c get_description.c
+VISUAL_SRC = visu.c windows_funcs.c parse.c print.c
 
-VISUAL_SRC = $(addprefix $(VISUAL_DIR), visu.c windows_funcs.c parse.c print.c)
-
-VISUAL_DIR = ./visu/
-
-VISUAL_OBJ = $(VISUAL_SRC:.c =.o)
-
-SRCDIR = ./src/
-
+VISUAL_OBJ = $(VISUAL_SRC:.c=.o)
 OBJ = $(SRC:.c=.o)
 
-LIBFT = libft.a
-
-VISUAL = show_filler
+VISUAL_DIR = ./visu/
+OBJ_DIR = ./obj/
+SRCDIR = ./src/
 
 all: $(NAME)
 
-$(NAME): $(OBJ) $(LIBFT)
-	gcc -o $(NAME) $(SRC) -L ./libft/ -lft -I ./includes/
+$(NAME): $(LIBFT) $(addprefix $(OBJ_DIR), $(OBJ))
+	gcc -o $(NAME) $(addprefix $(OBJ_DIR), $(OBJ)) -L ./libft/ -lft -I ./includes/
 
-filler: $(VISUAL_OBJ) $(LIBFT)
-	gcc -o visu_filler $(VISUAL_OBJ) -L ./libft/ -lft -I /usr/local/include -lmlx -framework OpenGL -framework AppKit
+filler: $(LIBFT) $(addprefix $(OBJ_DIR), $(VISUAL_OBJ))
+	gcc -o $(VISUAL) $(addprefix $(OBJ_DIR), $(VISUAL_OBJ)) -L ./libft/ -lft -I /usr/local/include -lmlx -framework OpenGL -framework AppKit
 
-$(addprefix $(SRCDIR), %.o): $(addprefix $(SRCDIR), %.c)
+$(addprefix $(OBJ_DIR), %.o): $(addprefix $(SRCDIR), %.c)
 	gcc -Wall -W -Werror -c -o $@ $< -I ./includes/
 
-$(addprefix $(VISUAL_DIR), %.o): $(addprefix $(VISUAL_DIR), %.c)
-	gcc -Wall -W -Werror -c -o $@ $<
+$(addprefix $(OBJ_DIR), %.o): $(addprefix $(VISUAL_DIR), %.c)
+	gcc -Wall -W -Werror -c -o $@ $< -I ./includes/
 
 $(LIBFT):
-	@make -C ./libft/ --silent
+	make -C ./libft/ --silent
 
 clean:
-	/bin/rm -f $(OBJ)
-	/bin/rm -f visu/*.o
+	/bin/rm -f $(addprefix $(OBJ_DIR), $(OBJ) $(VISUAL_OBJ))
 	make -C ./libft/ clean --silent
 
 fclean: clean
